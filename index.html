@@ -599,7 +599,7 @@ footer{
   .hero-inner{grid-template-columns:1fr;gap:32px;padding:0 clamp(16px,4vw,40px);}
   .hero-inner>div:last-child{display:none;}
   .hero-body{font-size:15px;max-width:100%;}
-  .hero-btns{flex-direction:column;align-items:flex-start;gap:10px;}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:10px;}
   .hero-btns .btn-primary,.hero-btns .btn-secondary{width:100%;justify-content:center;}
   .hero-mini-stats{gap:10px;}
   .hero-mini-card{min-width:0;flex:1;}
@@ -620,6 +620,38 @@ footer{
   .chart-box{padding:18px;}
   .chart-box h4{font-size:15px;}
   .chart-box canvas{height:220px!important;}
+
+  /* MARKET PAGE — mobile friendly at 900px */
+  #page-market .process-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  #page-market .process-card{padding:18px;}
+  #page-market .process-card h3{font-size:14px;}
+  #page-market .process-card p{font-size:12px;}
+  #page-market .stats-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  #page-market .stat-card{padding:18px;}
+  #page-market .stat-num{font-size:clamp(26px,5vw,40px);}
+  #page-market .chart-grid{gap:16px;}
+  #page-market .section-h2{font-size:clamp(22px,4vw,34px);}
+  #page-market section[style*="padding:clamp(80px"]{padding:clamp(50px,8vw,80px) 0 clamp(36px,5vw,56px)!important;}
+  #page-market .para-dark{font-size:14px;}
+  #page-market .para-light{font-size:14px;}
+
+  /* BUTTONS — all pages mobile friendly */
+  .btn-primary,.btn-secondary,.btn-white{
+    padding:13px 22px;font-size:11px;width:100%;
+    justify-content:center;box-sizing:border-box;
+  }
+  /* Button pairs: stack vertically */
+  .hero-btns{flex-direction:column;align-items:stretch;gap:10px;}
+  /* Expand buttons on platform cards: full width */
+  .expand-btn{width:100%;text-align:center;justify-content:center;padding:10px 16px;font-size:10px;}
+  /* FAQ buttons: wrap long text properly */
+  .faq-btn{font-size:14px;padding:15px 16px;gap:10px;align-items:flex-start;}
+  .faq-btn span:first-child{flex:1;text-align:left;line-height:1.5;}
+  .faq-icon{flex-shrink:0;margin-top:2px;}
+  /* Form submit */
+  .form-submit-btn{padding:15px;font-size:12px;}
+  /* Pricing page buttons already full-width, ensure tap height */
+  .price-card .btn-primary,.price-card .btn-secondary{padding:14px;font-size:11px;}
 
   /* PRICING */
   .pricing-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto;}
@@ -693,6 +725,16 @@ footer{
   .chart-box p{font-size:11px;}
   .chart-box canvas{height:180px!important;}
 
+  /* MARKET PAGE — extra small mobile */
+  #page-market .process-grid{grid-template-columns:1fr;gap:12px;}
+  #page-market .stats-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  #page-market .stat-card{padding:14px 12px;}
+  #page-market .stat-num{font-size:clamp(22px,6vw,34px);}
+  #page-market .stat-lbl{font-size:11px;}
+  #page-market .chart-grid{gap:12px;}
+  #page-market .chart-box{padding:14px;}
+  #page-market .para-dark,#page-market .para-light{font-size:13px;}
+
   /* COMPARISON TABLE scroll on small screens */
   .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .comp-table{min-width:520px;}
@@ -702,6 +744,9 @@ footer{
 
   /* BUTTONS */
   .btn-primary,.btn-secondary,.btn-white{padding:12px 20px;font-size:11px;}
+  .expand-btn{padding:10px;font-size:10px;}
+  .faq-btn{font-size:13px;padding:13px 14px;}
+  .form-submit-btn{padding:14px;}
 }
 </style>
 </head>
