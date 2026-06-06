@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomy Governance Hub | Govern Autonomy. Build Trust. Scale Impact.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  /* Autonomy Governance Hub 8 Deep Navy, Electric Cyan, Violet */
+  --blue:#1A3A6B;          /* Deep Navy primary */
+  --blue-light:#2558A8;    /* Mid Navy */
+  --blue-dim:#0E2347;      /* Deeper Navy */
+  --blue-dark:#07142C;     /* Darkest navy */
+  --blue-deeper:#040D1E;   /* Void */
+
+  --accent:#00C2CB;        /* Electric Cyan */
+  --accent-light:#E6F9FA;  /* Ice blue */
+  --accent-dim:#00A0A8;    /* Deep cyan */
+
+  --violet:#6C3FC5;        /* Trust violet */
+  --violet-light:#8B5CF6;  /* Lighter violet */
+
+  --nav-bg:#07142C;
+  --footer-bg:#040D1E;
+
+  --bg-white:#F5F7FF;
+  --bg-light:#EDF0FA;
+  --bg-section:#E8ECF8;
+  --bg-card:#FFFFFF;
+
+  --card-border:rgba(26,58,107,0.15);
+  --card-border-strong:rgba(0,194,203,0.35);
+
+  --text-dark:#07142C;
+  --text-mid:#1A3A6B;
+  --text-muted:#4A6A9A;
+  --text-light:#7A9AC0;
+  --white:#FFFFFF;
+
+  --nav-h:72px;
+  --max-w:1200px;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --display:'Sora',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+}
+
+body{font-family:var(--font);color:var(--text-dark);background:#F5F7FF;overflow-x:hidden;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg-light);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+
+img{display:block;max-width:100%;}
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+.navbar{
+  position:fixed;top:0;left:0;width:100%;height:var(--nav-h);
+  background:var(--nav-bg);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,194,203,0.2);
+  z-index:1000;display:flex;align-items:center;
+  padding:0 clamp(14px,5vw,80px);
+  justify-content:space-between;
+  transition:border-color 0.3s;
+  box-shadow:0 2px 24px rgba(0,0,0,0.4);
+  gap:12px;
+}
+.nav-logo{
+  font-family:var(--display);font-size:17px;font-weight:800;
+  color:var(--white);letter-spacing:-0.3px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;text-decoration:none;flex-shrink:0;
+}
+.nav-logo-icon{
+  width:40px;height:40px;
+  background:linear-gradient(135deg,var(--accent),var(--violet));
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 4px 14px rgba(0,194,203,0.3);
+  border:1px solid rgba(0,194,203,0.4);
+  font-size:18px;color:#fff;
+}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-text span{font-size:10px;font-family:var(--mono);font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links li button{
+  background:none;border:none;
+  color:rgba(255,255,255,0.8);
+  font-size:11px;font-weight:600;
+  padding:8px 14px;border-radius:7px;
+  transition:all 0.22s var(--ease);
+  cursor:pointer;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;
+  position:relative;white-space:nowrap;
+}
+.nav-links li button:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.nav-links li button.active{color:var(--accent);background:rgba(0,194,203,0.12);}
+.nav-links li button.active::after{
+  content:'';position:absolute;bottom:5px;left:50%;
+  transform:translateX(-50%);width:14px;height:2px;
+  background:var(--accent);border-radius:2px;
+}
+
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-demo-nav{
+  background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+  color:#07142C;border:none;padding:9px 20px;border-radius:8px;
+  font-size:11px;font-weight:700;cursor:pointer;
+  transition:all 0.22s;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 2px 12px rgba(0,194,203,0.3);
+}
+.btn-demo-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,194,203,0.5);}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:0.3s;display:block;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mobile-nav{
+  display:none;position:fixed;top:var(--nav-h);left:0;width:100%;
+  background:#07142C;backdrop-filter:blur(20px);
+  padding:12px 20px 20px;flex-direction:column;gap:2px;
+  z-index:999;border-bottom:1px solid rgba(0,194,203,0.15);
+  animation:slideDown 0.25s var(--ease-out);
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.mobile-nav.open{display:flex;}
+.mobile-nav button{
+  background:none;border:none;color:rgba(255,255,255,0.8);
+  font-size:13px;font-weight:600;padding:13px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  cursor:pointer;font-family:var(--mono);text-align:left;
+  text-transform:uppercase;letter-spacing:1px;
+  transition:color 0.2s,background 0.2s;border-radius:6px;
+}
+.mobile-nav button:hover{color:#fff;background:rgba(255,255,255,0.08);}
+.mobile-nav .mob-cta{
+  margin-top:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+  color:#07142C;border:none;padding:13px;
+  border-radius:8px;font-weight:700;font-size:12px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  font-family:var(--mono);
+}
+
+/* ─── PAGE SYSTEM ─────────────────────────────────────── */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h);}
+.page.active{display:block;animation:pgIn 0.35s var(--ease);}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── SECTION COMMONS ─────────────────────────────────── */
+.label-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent-dim);margin-bottom:14px;
+}
+.label-tag::before{content:'';width:20px;height:1px;background:var(--accent);}
+.label-tag-white{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(0,194,203,0.8);margin-bottom:14px;
+}
+.label-tag-white::before{content:'';width:20px;height:1px;background:rgba(0,194,203,0.6);}
+
+.section-h2{
+  font-family:var(--display);font-size:clamp(28px,3vw,54px);
+  font-weight:800;line-height:1.1;letter-spacing:-0.8px;
+  margin-bottom:10px;
+}
+.section-h2.blue-txt{color:var(--blue-dark);}
+.section-h2.dark{color:var(--text-dark);}
+.section-h2.white{color:var(--white);}
+
+.section-divider{width:56px;height:3px;margin:16px 0 28px;border-radius:2px;}
+.divider-blue{background:linear-gradient(90deg,var(--accent),transparent);}
+.divider-white{background:linear-gradient(90deg,rgba(0,194,203,0.8),transparent);}
+.divider-center{margin:16px auto 28px;}
+
+.para-dark{color:var(--text-mid);line-height:1.85;font-size:clamp(15px,1.2vw,18px);}
+.para-light{color:rgba(255,255,255,0.85);line-height:1.85;font-size:clamp(15px,1.2vw,18px);}
+
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);width:100%;}
+
+/* ─── BUTTONS ─────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+  color:#07142C;padding:13px 28px;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:12px;
+  letter-spacing:0.8px;text-transform:uppercase;
+  transition:all 0.25s;font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,194,203,0.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,194,203,0.5);}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--accent);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;text-decoration:none;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);background:none;cursor:pointer;
+}
+.btn-secondary:hover{background:rgba(0,194,203,0.08);border-color:var(--accent-dim);}
+
+.btn-white{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--white);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,0.15);
+}
+.btn-white:hover{transform:translateY(-2px);background:var(--accent-light);box-shadow:0 8px 28px rgba(0,0,0,0.2);}
+
+/* ─── STATUS BADGES ─────────────────────────────── */
+.risk-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:0.5px;
+}
+.risk-blue{background:rgba(0,194,203,0.1);color:var(--accent-dim);border:1px solid rgba(0,194,203,0.28);}
+.risk-light{background:rgba(108,63,197,0.1);color:var(--violet);border:1px solid rgba(108,63,197,0.25);}
+.risk-green{background:rgba(16,185,129,0.1);color:#059669;border:1px solid rgba(16,185,129,0.25);}
+.risk-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 40%,#C8D5F5 100%);
+  padding:clamp(60px,9vw,120px) 0 clamp(50px,7vw,96px);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:clamp(300px,40vw,700px);height:clamp(300px,40vw,700px);border-radius:50%;
+  background:radial-gradient(circle,rgba(0,194,203,0.1) 0%,transparent 70%);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:clamp(200px,30vw,500px);height:clamp(200px,30vw,500px);border-radius:50%;
+  background:radial-gradient(circle,rgba(108,63,197,0.08) 0%,transparent 70%);
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;
+  padding:0 clamp(20px,5vw,80px);
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(48px,6vw,96px);
+  align-items:center;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,194,203,0.12);border:1px solid rgba(0,194,203,0.3);
+  border-radius:30px;padding:6px 16px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--accent-dim);letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{
+  font-family:var(--display);font-size:clamp(34px,4.5vw,68px);
+  font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:var(--text-dark);
+  margin-bottom:6px;
+}
+h1 .cyan{color:var(--accent-dim);}
+h1 .navy{color:var(--blue);}
+.hero-rule{width:48px;height:3px;background:linear-gradient(90deg,var(--accent),var(--violet));border-radius:2px;margin:20px 0;}
+.hero-body{font-size:clamp(15px,1.3vw,19px);color:var(--text-mid);line-height:1.8;margin-bottom:28px;max-width:560px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+
+.hero-mini-stats{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.hero-mini-card{
+  background:rgba(255,255,255,0.85);
+  border:1px solid rgba(0,194,203,0.2);
+  border-radius:12px;padding:clamp(12px,1.5vw,18px) clamp(14px,2vw,22px);min-width:130px;
+  backdrop-filter:blur(8px);
+}
+.hero-mini-card strong{
+  display:block;font-family:var(--display);
+  font-size:clamp(20px,2vw,28px);font-weight:800;color:var(--blue-dark);
+}
+.hero-mini-card span{font-size:clamp(10px,0.85vw,12px);color:var(--text-muted);font-family:var(--mono);}
+
+/* DASHBOARD CARD */
+.score-card{
+  background:#fff;border-radius:18px;
+  border:1px solid rgba(0,194,203,0.18);
+  padding:24px;box-shadow:0 8px 40px rgba(26,58,107,0.12);
+}
+.score-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.score-card-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.dashboard-title{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text-dark);}
+.live-dot-wrap{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:1.5px;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite;}
+.score-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,194,203,0.08);}
+.score-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;flex-shrink:0;}
+.score-icon.blue-bg{background:rgba(0,194,203,0.12);color:var(--accent-dim);}
+.score-icon.light-bg{background:rgba(108,63,197,0.12);color:var(--violet);}
+.score-icon.green-bg{background:rgba(74,124,89,0.12);color:#3a6648;}
+.score-lbl{flex:1;font-size:12px;color:var(--text-muted);}
+.score-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big{display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px;background:linear-gradient(135deg,rgba(0,194,203,0.08),rgba(108,63,197,0.1));border-radius:12px;border:1px solid rgba(0,194,203,0.15);}
+.score-big-num{font-family:var(--display);font-size:clamp(44px,4vw,56px);font-weight:800;color:var(--accent-dim);line-height:1;}
+.score-big-info .label{font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big-info .sub{font-size:11px;color:var(--text-muted);margin-top:3px;font-family:var(--mono);}
+
+/* ─── STATS STRIP ─────────────────────────────────────── */
+.section-blue{
+  background:linear-gradient(135deg,#07142C 0%,#0E2347 100%);
+  padding:clamp(60px,7vw,112px) 0;
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(32px,4vw,56px);
+}
+.stat-card{
+  background:rgba(0,194,203,0.07);border:1px solid rgba(0,194,203,0.18);
+  border-radius:16px;padding:clamp(20px,3vw,30px);
+  text-align:center;transition:transform 0.25s,border-color 0.25s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(0,194,203,0.38);}
+.stat-num{font-family:var(--display);font-size:clamp(30px,3.5vw,56px);font-weight:800;color:var(--accent);margin-bottom:10px;}
+.stat-lbl{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;}
+
+/* ─── PLATFORM SECTION ─────────────────────────────────── */
+.platform-section{background:var(--bg-white);padding:clamp(60px,7vw,112px) 0;}
+.platform-sub{max-width:min(760px,80%);margin-bottom:44px;color:var(--text-mid);}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.platform-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:18px;overflow:hidden;
+  transition:transform 0.28s var(--ease),box-shadow 0.28s var(--ease),border-color 0.28s;
+  display:flex;flex-direction:column;
+}
+.platform-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,194,203,0.12);border-color:var(--card-border-strong);}
+.platform-img-wrap{height:180px;overflow:hidden;background:linear-gradient(135deg,#EDF0FA,#D8E2F8);}
+.platform-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s var(--ease);}
+.platform-card:hover .platform-img-wrap img{transform:scale(1.05);}
+.inner{padding:22px;flex:1;display:flex;flex-direction:column;}
+.element-badge{
+  display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--accent-dim);
+  background:rgba(0,194,203,0.1);padding:3px 10px;border-radius:20px;
+  margin-bottom:12px;
+}
+.inner h3{font-family:var(--display);font-size:clamp(15px,1.3vw,18px);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.3;}
+.inner p{font-size:clamp(12px,1vw,14px);color:var(--text-muted);line-height:1.7;}
+.more-text{font-size:clamp(12px,1vw,14px);color:var(--text-muted);line-height:1.7;margin-top:12px;display:none;}
+.platform-card.open .more-text{display:block;}
+.expand-btn{
+  margin-top:16px;background:none;border:1px solid rgba(0,194,203,0.25);
+  color:var(--accent-dim);font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border-radius:7px;
+  cursor:pointer;transition:all 0.2s;align-self:flex-start;
+}
+.expand-btn:hover{background:rgba(0,194,203,0.08);border-color:var(--accent);}
+
+.platform-grid-2col{grid-template-columns:repeat(2,1fr);}
+.section-light{background:var(--bg-white);padding:clamp(60px,7vw,112px) 0;}
+
+/* ─── PROCESS SECTION ─────────────────────────────────── */
+.process-section{background:#fff;padding:clamp(60px,7vw,112px) 0;}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.process-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:16px;padding:clamp(22px,3vw,32px);
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.process-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,194,203,0.1);}
+.process-num{font-family:var(--display);font-size:42px;font-weight:800;color:rgba(0,194,203,0.12);line-height:1;margin-bottom:12px;}
+.process-icon{width:48px;height:48px;border-radius:12px;background:rgba(0,194,203,0.1);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent-dim);margin-bottom:16px;}
+.process-card h3{font-family:var(--display);font-size:clamp(15px,1.3vw,18px);font-weight:700;color:var(--text-dark);margin-bottom:10px;}
+.process-card p{font-size:clamp(12px,1vw,14px);color:var(--text-muted);line-height:1.75;}
+
+/* ─── CHARTS ─────────────────────────────────────────── */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;}
+.chart-box{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:16px;padding:24px;
+}
+.chart-box h4{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.chart-box p{font-size:12px;color:var(--text-muted);font-family:var(--mono);margin-bottom:16px;}
+.chart-box canvas{height:200px!important;}
+
+/* ─── PRICING ─────────────────────────────────────────── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.price-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:20px;padding:clamp(24px,3vw,36px);
+  position:relative;transition:transform 0.25s,box-shadow 0.25s;
+}
+.price-card:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,194,203,0.12);}
+.price-card.featured{border-color:var(--accent);box-shadow:0 12px 40px rgba(0,194,203,0.2);}
+.featured-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--accent),var(--accent-dim));color:#07142C;font-family:var(--mono);
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 16px;border-radius:20px;white-space:nowrap;
+}
+.price-tier{font-family:var(--display);font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:8px;}
+.price-amount{font-family:var(--display);font-size:44px;font-weight:800;color:var(--blue-dark);line-height:1;}
+.price-amount span{font-size:18px;font-weight:500;color:var(--text-muted);}
+.price-sub{font-size:12px;color:var(--text-muted);font-family:var(--mono);margin-top:6px;margin-bottom:20px;}
+.price-divider{border:none;border-top:1px solid rgba(0,194,203,0.1);margin:20px 0;}
+.price-feature{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-mid);padding:7px 0;}
+.price-feature i{color:var(--accent-dim);margin-top:2px;flex-shrink:0;}
+
+/* ─── ABOUT / FOUNDERS ────────────────────────────────── */
+.founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;}
+.founder-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:20px;padding:32px;
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.founder-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,194,203,0.1);}
+.founder-avatar{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--accent-dim));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:28px;font-weight:800;color:#fff;
+  margin-bottom:18px;border:3px solid rgba(0,194,203,0.2);
+  overflow:hidden;
+}
+.founder-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.founder-name{font-family:var(--display);font-size:21px;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.founder-title{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.founder-bio{font-size:13px;color:var(--text-muted);line-height:1.75;}
+.founder-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.founder-skill{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  padding:4px 12px;border-radius:20px;letter-spacing:0.5px;
+  background:rgba(0,194,203,0.08);color:var(--accent-dim);
+  border:1px solid rgba(0,194,203,0.2);
+}
+
+/* ─── VALUES / CORE VALS ──────────────────────────────── */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.val-card{
+  background:linear-gradient(135deg,rgba(0,194,203,0.05),rgba(108,63,197,0.05));
+  border:1px solid rgba(0,194,203,0.12);
+  border-radius:16px;padding:28px;text-align:center;
+}
+.val-icon{width:56px;height:56px;border-radius:16px;
+  background:linear-gradient(135deg,var(--accent),var(--violet));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;margin:0 auto 16px;
+  box-shadow:0 6px 20px rgba(0,194,203,0.25);}
+.val-title{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:10px;}
+.val-desc{font-size:13px;color:var(--text-muted);line-height:1.7;}
+
+/* ─── COMPARISON TABLE ──────────────────────────────── */
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table th{
+  background:var(--blue-dark);color:#fff;font-family:var(--mono);
+  font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  padding:12px 14px;text-align:left;
+}
+.comp-table th.highlight-col{background:linear-gradient(135deg,var(--accent-dim),var(--accent));color:#07142C;}
+.comp-table td{padding:11px 14px;border-bottom:1px solid rgba(0,194,203,0.08);color:var(--text-muted);}
+.comp-table td.highlight-col{background:rgba(0,194,203,0.04);font-weight:600;}
+.comp-table .check{color:var(--accent-dim);font-weight:600;}
+.comp-table .cross{color:#aaa;}
+.comp-table tr:hover td{background:rgba(0,194,203,0.03);}
+
+/* ─── FAQ ─────────────────────────────────────────────── */
+.faq-item{border:1px solid var(--card-border);border-radius:12px;margin-bottom:14px;overflow:hidden;}
+.faq-btn{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:none;padding:18px 22px;cursor:pointer;
+  font-family:var(--display);font-size:15px;font-weight:600;color:var(--text-dark);
+  text-align:left;transition:background 0.2s;gap:12px;
+}
+.faq-btn:hover{background:rgba(0,194,203,0.03);}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:rgba(0,194,203,0.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent-dim);flex-shrink:0;font-size:12px;}
+.faq-answer{display:none;padding:0 22px 18px;font-size:14px;color:var(--text-muted);line-height:1.75;}
+.faq-item.open .faq-answer{display:block;}
+.faq-item.open .faq-btn{background:rgba(0,194,203,0.04);}
+
+/* ─── CONTACT LAYOUT ─────────────────────────────────── */
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:48px;
+  align-items:flex-start;
+}
+.contact-info-cards{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+.info-card{
+  background:#fff;border:1px solid var(--card-border);border-radius:14px;padding:20px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.info-card-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--violet));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:16px;
+}
+.info-card-text strong{display:block;font-family:var(--display);font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.info-card-text span{font-size:12px;color:var(--text-muted);font-family:var(--mono);}
+
+.contact-form-wrap{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:20px;padding:clamp(24px,3vw,40px);
+}
+.form-row{margin-bottom:18px;}
+.form-row label{display:block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;}
+.form-row input,.form-row select,.form-row textarea{
+  width:100%;padding:12px 14px;border:1.5px solid rgba(26,58,107,0.15);
+  border-radius:8px;font-size:14px;font-family:var(--font);
+  background:#fff;color:var(--text-dark);
+  transition:border-color 0.2s,box-shadow 0.2s;outline:none;
+}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,194,203,0.1);
+}
+.form-row textarea{resize:vertical;min-height:110px;}
+.form-submit-btn{
+  width:100%;background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+  color:#07142C;border:none;padding:14px;border-radius:10px;
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;cursor:pointer;transition:all 0.25s;
+  box-shadow:0 4px 16px rgba(0,194,203,0.3);
+}
+.form-submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,194,203,0.5);}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer{
+  background:var(--footer-bg);padding:clamp(48px,7vw,96px) clamp(20px,5vw,80px) 0;
+  border-top:1px solid rgba(0,194,203,0.15);
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;
+  padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.footer-logo{
+  font-family:var(--display);font-size:20px;font-weight:800;
+  color:var(--white);margin-bottom:16px;cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+}
+.footer-logo-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),var(--violet));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;
+}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:20px;}
+.footer-badges{display:flex;flex-wrap:wrap;gap:8px;}
+.footer-badge{
+  font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  background:rgba(0,194,203,0.1);color:rgba(0,194,203,0.8);
+  border:1px solid rgba(0,194,203,0.2);
+}
+.footer-col-title{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);margin-bottom:16px;
+}
+.footer-col{display:flex;flex-direction:column;gap:10px;}
+.footer-col a{
+  font-size:13px;color:rgba(255,255,255,0.5);cursor:pointer;
+  transition:color 0.2s;text-decoration:none;
+}
+.footer-col a:hover{color:var(--accent);}
+.footer-bottom-bar{
+  max-width:1200px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom-bar p{font-size:12px;color:rgba(255,255,255,0.35);font-family:var(--mono);}
+.footer-bottom-bar p span{color:rgba(0,194,203,0.7);}
+.footer-bottom-links{display:flex;gap:20px;}
+.footer-bottom-links a{font-size:11px;color:rgba(255,255,255,0.35);cursor:pointer;transition:color 0.2s;text-decoration:none;font-family:var(--mono);}
+.footer-bottom-links a:hover{color:var(--accent);}
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:900px){
+  /* NAV */
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .btn-demo-nav{display:none;}
+
+  /* HERO */
+  .hero{padding:clamp(40px,7vw,80px) 0 clamp(36px,6vw,64px);}
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:0 clamp(16px,4vw,40px);}
+  .hero-inner>div:last-child{display:none;}
+  .hero-body{font-size:15px;max-width:100%;}
+  .hero-btns{flex-direction:column;align-items:flex-start;gap:10px;}
+  .hero-btns .btn-primary,.hero-btns .btn-secondary{width:100%;justify-content:center;}
+  .hero-mini-stats{gap:10px;}
+  .hero-mini-card{min-width:0;flex:1;}
+
+  /* STATS */
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
+  .stat-card{padding:clamp(16px,2.5vw,24px);}
+
+  /* PLATFORM */
+  .platform-grid{grid-template-columns:1fr 1fr;}
+  .platform-grid-2col{grid-template-columns:1fr;}
+
+  /* PROCESS */
+  .process-grid{grid-template-columns:1fr 1fr;}
+
+  /* CHARTS — Market page */
+  .chart-grid{grid-template-columns:1fr;}
+  .chart-box{padding:18px;}
+  .chart-box h4{font-size:15px;}
+  .chart-box canvas{height:220px!important;}
+
+  /* PRICING */
+  .pricing-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto;}
+
+  /* ABOUT / FOUNDER */
+  .founders-grid{grid-template-columns:1fr;}
+  .founder-card-single{display:flex!important;flex-direction:column;gap:24px;}
+  .founder-card-single .founder-avatar{width:90px;height:90px;font-size:30px;margin-bottom:0;}
+  .founder-name{font-size:20px;}
+  .values-grid{grid-template-columns:1fr 1fr;}
+
+  /* COMPARISON TABLE */
+  .comp-table{font-size:11px;}
+  .comp-table th,.comp-table td{padding:9px 8px;}
+
+  /* CONTACT */
+  .contact-grid{grid-template-columns:1fr;gap:32px;}
+
+  /* FOOTER */
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  .footer-bottom-bar{flex-direction:column;align-items:flex-start;gap:10px;}
+  .footer-bottom-links{flex-wrap:wrap;gap:12px;}
+
+  /* SECTION SPACING */
+  .section-blue{padding:clamp(40px,6vw,80px) 0;}
+  .platform-section{padding:clamp(40px,6vw,80px) 0;}
+  .process-section{padding:clamp(40px,6vw,80px) 0;}
+  .section-light{padding:clamp(40px,6vw,80px) 0;}
+
+  /* CONTAINER PADDING */
+  .container{padding:0 clamp(16px,4vw,40px);}
+
+  /* TYPOGRAPHY */
+  .section-h2{font-size:clamp(24px,4.5vw,38px);}
+  h1{font-size:clamp(30px,6vw,52px);}
+}
+
+@media(max-width:600px){
+  /* NAV LOGO */
+  .nav-logo-text{font-size:14px;}
+
+  /* HERO */
+  .hero-mini-stats{flex-wrap:wrap;}
+  .hero-mini-card{min-width:calc(50% - 5px);}
+  h1{letter-spacing:-0.5px;}
+
+  /* GRIDS */
+  .platform-grid{grid-template-columns:1fr;}
+  .platform-grid-2col{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .values-grid{grid-template-columns:1fr;}
+  .founder-card-single{gap:18px;}
+  .founder-skills{gap:6px;}
+  .founder-skill{font-size:9px;}
+  .founders-grid{grid-template-columns:1fr;}
+
+  /* FOOTER */
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-bottom-bar p{font-size:11px;}
+
+  /* CONTACT */
+  .contact-info-cards{gap:12px;}
+
+  /* PRICING */
+  .pricing-grid{max-width:100%;}
+
+  /* CHARTS at 600px */
+  .chart-box{padding:14px;}
+  .chart-box h4{font-size:14px;}
+  .chart-box p{font-size:11px;}
+  .chart-box canvas{height:180px!important;}
+
+  /* COMPARISON TABLE scroll on small screens */
+  .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .comp-table{min-width:520px;}
+
+  /* FAQ */
+  .faq-btn{font-size:14px;padding:15px 16px;}
+
+  /* BUTTONS */
+  .btn-primary,.btn-secondary,.btn-white{padding:12px 20px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar">
+  <a class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-text">
+      AutonomyGovernanceHub
+      <span>AI Safety Platform · UK 2026</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><button id="nav-home" onclick="showPage('home')" class="active">Home</button></li>
+    <li><button id="nav-platform" onclick="showPage('platform')">Platform</button></li>
+    <li><button id="nav-process" onclick="showPage('process')">How It Works</button></li>
+    <li><button id="nav-market" onclick="showPage('market')">Market</button></li>
+    <li><button id="nav-pricing" onclick="showPage('pricing')">Pricing</button></li>
+    <li><button id="nav-about" onclick="showPage('about')">About</button></li>
+    <li><button id="nav-faq" onclick="showPage('faq')">FAQ</button></li>
+    <li><button id="nav-contact" onclick="showPage('contact')">Contact</button></li>
+  </ul>
+
+  <div class="nav-right">
+    
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="showPage('home');closeMobile()">Home</button>
+  <button onclick="showPage('platform');closeMobile()">Platform</button>
+  <button onclick="showPage('process');closeMobile()">How It Works</button>
+  <button onclick="showPage('market');closeMobile()">Market</button>
+  <button onclick="showPage('pricing');closeMobile()">Pricing</button>
+  <button onclick="showPage('about');closeMobile()">About</button>
+  <button onclick="showPage('faq');closeMobile()">FAQ</button>
+  <button onclick="showPage('contact');closeMobile()">Contact</button>
+
+</div>
+<!-- ═══════════════════════════════════════════
+     PAGE : HOME
+═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          TRL-7 Prototype · UK AI Safety Institute Aligned · 2026
+        </div>
+        <h1>Govern <span class="cyan">Autonomy.</span><br>Build <span class="navy">Trust.</span><br>Scale Impact.</h1>
+        <div class="hero-rule"></div>
+        <p class="hero-body">
+          AutonomyGovernanceHub is the UK's first AI-native runtime trust and orchestration platform  bridging the "Governance Gap" in enterprise AI through real-time safety, security, and compliance for autonomous agents across Banking, IT Operations, Healthcare, and Government.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Request Demo →</button>
+          <button class="btn-secondary" onclick="showPage('platform')">Explore Platform</button>
+        </div>
+        
+      </div>
+      <div>
+        <div class="score-card">
+          <div class="score-card-top">
+            <div>
+              <div class="score-card-label">AutonomyGovernanceHub · Live Runtime Control Centre</div>
+              <h3 class="dashboard-title">Agent Governance Dashboard</h3>
+            </div>
+            <div class="live-dot-wrap"><span class="live-dot"></span>LIVE</div>
+          </div>
+          <div class="score-row">
+            <div class="score-icon blue-bg">AI</div>
+            <span class="score-lbl">Agent Interactions Today</span>
+            <span class="score-val">50,000 ↑18%</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon green-bg">DR</div>
+            <span class="score-lbl">Drift Detected & Blocked</span>
+            <span class="score-val">94.2% ↑3.1%</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon light-bg">IL</div>
+            <span class="score-lbl">Intercept Latency (avg)</span>
+            <span class="score-val">43ms ↓2ms</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon blue-bg">CP</div>
+            <span class="score-lbl">Compliance Coverage</span>
+            <span class="score-val">100% DORA/AI Act</span>
+          </div>
+          <div class="score-big">
+            <div class="score-big-num">99<span style="font-size:24px;">%</span></div>
+            <div class="score-big-info">
+              <div class="label">Platform Uptime SLA</div>
+              <div class="sub">Zero-Trust · GAN-Hardened · EU AI Act Ready</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">The Autonomous Agent Governance Crisis</div>
+      <h2 class="section-h2 white">Enterprises Are Deploying Autonomous Agents<br>Without Any Runtime Safety Net.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:760px;">
+        99% of enterprise developers are exploring agentic workflows, yet 80% have already encountered risky AI behaviours including unauthorized data exfiltration, over-privileged access, and cascading system failures. AutonomyGovernanceHub closes the "Governance Gap"  turning uncontrolled agent autonomy into a trusted, compliant, and auditable enterprise standard.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">80%</div>
+          <div class="stat-lbl">Enterprises have encountered risky autonomous agent behaviour including data exposure and unauthorized access</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">90%</div>
+          <div class="stat-lbl">Of AI agents are currently over-permissioned  creating massive attack surfaces for prompt injection</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100M+</div>
+          <div class="stat-lbl">Autonomous agents projected in production globally by 2030  each requiring a runtime trust layer</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">$56.7B</div>
+          <div class="stat-lbl">Global AI Trust, Risk &amp; Security Management (TRiSM) market projected by 2030 at 17.4% CAGR</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM PREVIEW -->
+  <section class="platform-section">
+    <div class="container">
+      <div class="label-tag">Core Intelligence Modules</div>
+      <h2 class="section-h2 dark">Five Governance Modules. One Complete AI Safety OS.</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark platform-sub">
+        AutonomyGovernanceHub combines Real-Time Behavioural Guardrails, Chain-of-Thought Auditing, GAN-Driven Threat Simulation, Risk-Adaptive HITL, and Edge Sovereignty into one unified platform  demand-aligned, real-time, and compliance-ready.
+      </p>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="au1.jpg" alt="Runtime Trust Interception">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 01</div>
+            <h3>Runtime Trust Interception</h3>
+            <p>Real-time interception and evaluation of agent reasoning chains before execution  blocking unsafe sessions in under 50ms using our AI-native "Autonomy Envelope."</p>
+            <div class="more-text">Unlike pre-recorded logs, our engine interprets live autonomous logic in real time. Using Transformer-based reasoning analysis trained on enterprise API interaction schemas, the system evaluates every agent "intent"  including API calls, database queries, and Bash commands  against dynamic safety policies and blocks non-compliant actions instantly.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="au2.jpg" alt="GAN Threat Simulation">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 02</div>
+            <h3>GAN-Driven Threat Simulation</h3>
+            <p>Generative Adversarial Networks continuously simulate millions of adversarial agent failure modes  proactively hardening governance policies before threats reach production.</p>
+            <div class="more-text">Our GAN architecture pits a "red-team" agent against the governance layer in a controlled environment, generating 10,000+ synthetic failure scenarios monthly. This includes novel prompt injection techniques, agentic drift patterns, and multi-agent collusion scenarios. The result: guardrails that evolve faster than the threats they face.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="au3.jpg" alt="Edge Sovereignty">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 03</div>
+            <h3>Edge Sovereignty & Data Privacy</h3>
+            <p>Full intent-to-policy inference executed locally within the corporate perimeter  ensuring GDPR compliance without exposing reasoning data to the cloud.</p>
+            <div class="more-text">The Edge Governance Module deploys as lightweight containers within private data centres or VDI hosts. All "Chain of Thought" logs and metadata are encrypted, anonymized, and processed locally. Critical for NHS Digital, national security departments, and Tier-1 banking environments where data sovereignty is non-negotiable.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PLATFORM
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-platform">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Full Platform</div>
+      <h2 class="section-h2 dark">Six Governance Modules.<br><span style="color:var(--accent-dim);">One Agentic Runtime Trust Command Centre.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">Every feature is purpose-built for enterprise-grade agentic environments  not retrofitted from generic security tools. Our proprietary "Autonomy Envelope" and GAN-driven threat engine translate complex agent behaviour into auditable, compliance-ready governance that enterprise operators can rely on 24/7.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Request Demo →</button>
+        <button class="btn-secondary" onclick="showPage('pricing')">View Pricing</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="platform-grid platform-grid-2col">
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au4.jpg" alt="Runtime Trust Interception" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 01 · Interception</div>
+            <h3>Real-Time Runtime Trust Interception & Autonomy Envelope</h3>
+            <p>Uses a specialized control plane to intercept and evaluate agent reasoning chains before execution. Interprets live autonomous logic and blocks or modifies unsafe sessions instantly using an AI-native "Autonomy Envelope" with sub-50ms latency.</p>
+            <div class="more-text">The system processes agent "intents"  including API calls, database queries, system commands, and Bash scripts  against dynamic safety envelopes in real time. The Transformer-based reasoning engine is exclusively trained on enterprise reasoning paths and API interaction schemas, ensuring governance is a deep linguistic and operational understanding of agent intent rather than a keyword filter. Achieves 94% accuracy in production-grade simulations.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au5.jpg" alt="GAN Threat Simulation" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 02 · Threat Defense</div>
+            <h3>GAN-Driven Synthetic Adversarial Simulation & Policy Hardening</h3>
+            <p>Generative Adversarial Networks proactively stress-test governance policies by simulating millions of adversarial agent failure scenarios  covering prompt injection, agentic drift, and multi-agent collusion patterns.</p>
+            <div class="more-text">Our proprietary "Red-Teaming" architecture generates 10,000+ synthetic adversarial scenarios monthly. This proactive training allows guardrails to identify emerging "agentic drift" techniques before they reach production. The synthetic failure dataset forms a defensible competitive data moat, continuously training the AI Safety Trust Scorer against novel attack vectors as LLM capabilities evolve.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au6.jpg" alt="Replayable Trust Ledger" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 03 · Audit & Forensics</div>
+            <h3>Replayable Trust Ledger & Chain-of-Thought Auditing</h3>
+            <p>A forensic-grade, immutable audit system that captures the "Chain of Thought" (reasoning) behind every autonomous decision  enabling full legal traceability and EU AI Act Explainability compliance.</p>
+            <div class="more-text">The Trust Ledger records every agent intent, policy constraint applied, contextual system state, and execution outcome in a synchronized, replayable format. IT teams and compliance officers receive a forensic-grade record of agent behaviour for regulatory reporting, DORA incident filing, and internal troubleshooting. Transforms non-deterministic agent behaviour into a legally defensible audit trail.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au7.jpg" alt="Edge Sovereignty" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 04 · Edge & Sovereignty</div>
+            <h3>Edge Governance & Federated Data Sovereignty</h3>
+            <p>Localized policy enforcement containers ensure all agent "Chain of Thought" logs and reasoning data are encrypted and processed within the corporate perimeter  critical for NHS, national security, and Tier-1 banking environments.</p>
+            <div class="more-text">The Edge Governance Module deploys as lightweight, Kubernetes-managed containers within private data centres, VDI hosts, or air-gapped environments. Full intent-to-policy inference runs locally with no cloud dependency. Federated policy updates from the centralized cloud engine are delivered encrypted. Ensures compliance with GDPR, DORA, and ISO/IEC 42001 without exposing sensitive internal reasoning to third-party cloud providers.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au8.jpg" alt="Risk Adaptive HITL" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 05 · Human-in-the-Loop</div>
+            <h3>Risk-Adaptive Human-in-the-Loop (HITL) Orchestration</h3>
+            <p>Intelligent escalation logic routes only high-impact agent decisions to human supervisors  maintaining machine-speed execution for 99% of routine tasks while ensuring accountability for the critical 1%.</p>
+            <div class="more-text">The Risk-Adaptive HITL engine evaluates agent actions against a dynamic risk score considering task criticality, environmental sensitivity, and historical behavioral trajectories. Low-risk automations execute autonomously. Ambiguous or high-impact decisions trigger a supervisor "thumbs-up/down" validation loop. Reduces human oversight time by 95% for routine agentic workflows while maintaining full accountability for mission-critical enterprise decisions.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="au9.jpg" alt="Zero Trust Identity" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module 06 · Zero-Trust Identity</div>
+            <h3>Zero-Trust Agent Identity & Dynamic Permissioning Engine</h3>
+            <p>Replaces static RBAC with dynamic, context-bound permissions  automatically recalibrating agent access rights based on task context, environmental sensitivity, and real-time risk posture.</p>
+            <div class="more-text">Every agent is assigned a cryptographically unique identity with ephemeral, task-specific permissions that expire after execution. The Risk-Adaptive Permissioning Engine continuously evaluates privilege scope based on situational signals. 90% of enterprise agents are currently over-permissioned  our Zero-Trust framework closes this attack surface entirely. All metadata and audit trails are encrypted under GDPR and ISO/IEC 42001 standards.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor Comparison -->
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Competitive Landscape</div>
+      <h2 class="section-h2 dark">Why Competitors Cannot Replicate<br>AutonomyGovernanceHub.</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:32px;">The AI security market is fragmented. Most solutions focus purely on post-hoc observability or static network firewalls  leaving a critical gap in live execution-time protection for autonomous agents. AutonomyGovernanceHub occupies the underserved "runtime trust orchestration" space with a UK-native, compliance-first approach.</p>
+      <div style="overflow-x:auto;">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature / Capability</th>
+              <th>Palo Alto (USA)</th>
+              <th>LangSmith (USA)</th>
+              <th>Arize AI (USA)</th>
+              <th>Weights & Biases (USA)</th>
+              <th class="highlight-col">AutonomyGovernanceHub (UK)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Real-Time Runtime Interception</td><td class="cross">No (infrastructure only)</td><td class="cross">No (post-hoc logging)</td><td class="cross">No (statistical drift)</td><td class="cross">No (dev-time only)</td><td class="check highlight-col">✓ Sub-50ms Autonomy Envelope</td></tr>
+            <tr><td>Chain-of-Thought Auditing</td><td class="cross">No</td><td class="cross">Partial (no runtime)</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ Full Replayable Trust Ledger</td></tr>
+            <tr><td>GAN-Driven Threat Simulation</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ 10,000+ Scenarios/Month</td></tr>
+            <tr><td>UK Regulatory Alignment</td><td class="cross">General SOC2 only</td><td class="cross">Privacy-focused</td><td class="cross">General AI indicators</td><td class="cross">Data lineage only</td><td class="check highlight-col">✓ DORA, EU AI Act, ISO 42001</td></tr>
+            <tr><td>Edge Sovereignty Deployment</td><td class="cross">Cloud-dependent</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ Air-Gapped & VDI Native</td></tr>
+            <tr><td>Target Market</td><td>Global enterprise cloud</td><td>AI Developers</td><td>Data Scientists</td><td>ML Research</td><td class="check highlight-col">✓ Tier-1 Banks, NHS, Gov, MSPs</td></tr>
+            <tr><td>Cost vs Manual Audits</td><td>High enterprise fees</td><td>Tiered developer subs</td><td>Enterprise SaaS</td><td>Enterprise SaaS</td><td class="check highlight-col">✓ 15% of manual audit cost</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Platform Architecture</div>
+      <h2 class="section-h2 white">Built on a Runtime Trust Layer Between<br>Autonomous Agents and Enterprise Infrastructure.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:700px;margin-bottom:40px;">
+        AutonomyGovernanceHub acts as a "Digital Air Traffic Control" for AI agents. Just as an air traffic controller watches every plane to ensure they follow the correct flight path, our platform watches every AI agent  ensuring it stays within its Safety Envelope, compliant with corporate policy and global regulation.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">94%</div><div class="stat-lbl">Agent drift detection accuracy in production-grade simulations maintaining under 45ms latency overhead</div></div>
+        <div class="stat-card"><div class="stat-num">99.99%</div><div class="stat-lbl">Platform operational uptime  essential for mission-critical IT operations and financial incident response agents</div></div>
+        <div class="stat-card"><div class="stat-num">50K</div><div class="stat-lbl">Agentic interactions governed per day across current pilot infrastructure with negligible host latency impact</div></div>
+        <div class="stat-card"><div class="stat-num">TRL-7</div><div class="stat-lbl">System prototype demonstrated in operational environments  nearing TRL-8 commercial readiness</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-platform -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PROCESS (HOW IT WORKS)
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-process">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">How It Works</div>
+      <h2 class="section-h2 dark">From Agent Intent to<br><span style="color:var(--accent-dim);">Trusted Execution in Milliseconds.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">AutonomyGovernanceHub transforms uncontrolled agentic behaviour into a governed, auditable, and compliance-ready operational standard  automatically, continuously, and without human bottlenecks slowing down enterprise automation.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Six-Step Process</div>
+      <h2 class="section-h2 dark">How AutonomyGovernanceHub Works.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="process-grid">
+
+        <div class="process-card">
+          <div class="process-num">01</div>
+          <div class="process-icon"><i class="fas fa-plug"></i></div>
+          <h3>Agent Intent Ingestion & Signal Mapping</h3>
+          <p>The platform intercepts real-time agent "intents"  API calls, database queries, SQL statements, Bash commands  from any agentic framework (LangChain, AutoGen, Microsoft Semantic Kernel) and maps them into the Autonomy Envelope control plane via lightweight gRPC interceptors.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-num">02</div>
+          <div class="process-icon"><i class="fas fa-brain"></i></div>
+          <h3>Chain-of-Thought Reasoning Analysis</h3>
+          <p>The Transformer-based reasoning engine analyzes the agent's "Chain of Thought"  evaluating the logic behind each action against corporate policies, regulatory constraints, and historical behavioral baselines. This is not a keyword filter; it's a deep operational understanding of agent intent.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-num">03</div>
+          <div class="process-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Autonomy Envelope Safety Gate Check</h3>
+          <p>The Autonomy Envelope independently verifies whether the agent's intended action aligns with its assigned safety boundary, data access permissions, and real-time risk posture. Without multi-signal policy clearance, no unsafe action is permitted to execute  eliminating unauthorized data exfiltration risk.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-num">04</div>
+          <div class="process-icon"><i class="fas fa-robot"></i></div>
+          <h3>Autonomous Enforcement or Escalation</h3>
+          <p>Low-risk, policy-compliant agent actions execute autonomously at machine speed. High-risk or ambiguous actions trigger the Risk-Adaptive HITL escalation loop  routing specific decisions to human supervisors for rapid "thumbs-up/down" validation without stopping the entire workflow.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-num">05</div>
+          <div class="process-icon"><i class="fas fa-book"></i></div>
+          <h3>Trust Ledger Recording & Forensic Capture</h3>
+          <p>Every agent decision, reasoning step, policy constraint applied, and execution outcome is captured in the Replayable Trust Ledger  a forensic-grade, immutable audit trail for regulatory reporting, DORA incident filing, and EU AI Act Explainability compliance.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-num">06</div>
+          <div class="process-icon"><i class="fas fa-sync"></i></div>
+          <h3>GAN Continuous Hardening & Policy Refinement</h3>
+          <p>The GAN-driven Synthetic Threat Engine continuously simulates new adversarial agent scenarios  updating governance guardrails proactively. Every deployment contributes to the global "Trust Scorer" model, improving drift detection accuracy over time without requiring manual policy re-writing.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture strip -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Governance Architecture</div>
+      <h2 class="section-h2 white">Built on a Trust Layer Between<br>Autonomous Logic and Enterprise Reality.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:700px;margin-bottom:40px;">
+        AutonomyGovernanceHub acts as a "Predictive Safety Intelligence Layer" between non-deterministic AI reasoning and the deterministic physical reality of enterprise operations  a combination not currently available from any UK-native AI governance provider. The platform is Agent-First, not report-first.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">30%</div><div class="stat-lbl">Governance latency reduction through model distillation techniques optimizing real-time interception performance</div></div>
+        <div class="stat-card"><div class="stat-num">95%</div><div class="stat-lbl">Reduction in human oversight time for routine agentic workflows through Risk-Adaptive HITL automation</div></div>
+        <div class="stat-card"><div class="stat-num">4 wks</div><div class="stat-lbl">Time to double governance capacity via Kubernetes-based horizontal scaling with no hardware upgrades</div></div>
+        <div class="stat-card"><div class="stat-num">15%</div><div class="stat-lbl">Of the cost of manual AI safety audits  machine-speed protection at a fraction of legacy consulting costs</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-process -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : MARKET
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-market">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Market Analysis</div>
+      <h2 class="section-h2 dark">The UK AI Governance Gap.<br><span style="color:var(--accent-dim);">A $56.7B Global Market Ready for Disruption.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">The global AI Trust, Risk, and Security Management (TRiSM) market grows at 17.4% CAGR, projected to reach $56.7B by 2030. Enterprise adoption of "Agentic AI" is accelerating  with 75% of UK enterprises planning autonomous workflows by 2026. Independent operators across Banking, NHS, and Government remain critically underserved  creating the precise opening for AutonomyGovernanceHub's runtime trust approach.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Market Data</div>
+      <h2 class="section-h2 dark">Data-Validated Market Opportunity.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h4>AI TRiSM Market Growth</h4>
+          <p>$18.5B (2023) → $56.7B (2030) at 17.4% CAGR  AgentOps sub-segment at 25% CAGR</p>
+          <canvas id="chartGrowth"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>Enterprise AI Agent Risk Exposure</h4>
+          <p>Primary governance pain points for UK/EU enterprise organisations (2025 survey)</p>
+          <canvas id="chartPain"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>UK Enterprise AI Governance Readiness</h4>
+          <p>Current governance maturity of UK enterprises deploying autonomous agents</p>
+          <canvas id="chartReadiness"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>Competitive Capability Radar</h4>
+          <p>Platform capability comparison vs market incumbents across 6 dimensions</p>
+          <canvas id="chartRadar"></canvas>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;">
+        <div class="label-tag">Sector Breakdown</div>
+        <h3 class="section-h2 dark" style="font-size:clamp(22px,2.5vw,34px);">UK Addressable Market by Sector.</h3>
+        <div class="section-divider divider-blue"></div>
+        <div class="process-grid" style="margin-top:28px;">
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-university"></i></div>
+            <h3>Banking & Financial Services  TAM: £56.25M</h3>
+            <p>350 Tier-1/2 Banks, 1,500 Fintechs, and 400 Insurance providers legally required to comply with DORA. Average annual spend: £25,000 per institution for autonomous trading and incident response agent governance.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-server"></i></div>
+            <h3>Enterprise IT & MSPs  TAM: £90M</h3>
+            <p>2,500 Managed Service Providers and 5,000 corporate IT departments managing VDI and cloud infrastructures. Average annual spend: £12,000 per entity for real-time agent monitoring and automated incident remediation guardrails.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-hospital"></i></div>
+            <h3>Healthcare & NHS Digital  TAM: £20.65M</h3>
+            <p>229 NHS Trusts and 1,148 hospitals required to meet NHS DTAC and emerging AI safety standards. Average annual spend: £15,000 per trust for clinical scheduling, diagnostic support, and patient data retrieval agent governance.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-landmark"></i></div>
+            <h3>Government & Defence  TAM: £8.64M</h3>
+            <p>408 Local Councils and 24 Ministerial Departments investing in Sovereign AI and Edge-native security. Average annual spend: £20,000 per entity for air-gapped governance and public accountability audits.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3>Retail & E-commerce  TAM: £85M</h3>
+            <p>12,000 large retail chains and 5,000 e-commerce platforms operating high-volume order processing and customer service agents. Average annual spend: £5,000 per platform for runtime trust enforcement and safety certification.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-globe"></i></div>
+            <h3>Total UK Addressable Market</h3>
+            <p>Combined UK TAM across all five critical sectors: approximately <strong style="color:var(--accent-dim);">£260.54 million annually</strong>. Global AI TRiSM market projected to reach <strong style="color:var(--accent-dim);">$56.7B by 2030</strong> at 17.4% CAGR with AgentOps sub-segment at 25%+ CAGR.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Revenue Projections</div>
+      <h2 class="section-h2 white">Five-Year High-Growth Trajectory.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:700px;margin-bottom:40px;">Starting from £74,660 in Year 1 during the pilot and MVP phase, AutonomyGovernanceHub strategically scales operations to reach over £3M by Year 5. Gross Margins consistently exceed 98%, characteristic of a digital-first platform where the cost of serving additional agents is negligible relative to revenue generated.</p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">£75K</div><div class="stat-lbl">Year 1 Revenue  Market entry with 51 active institutional users in MSP and Banking sectors</div></div>
+        <div class="stat-card"><div class="stat-num">£315K</div><div class="stat-lbl">Year 2 Revenue  320% growth driven by commercial SaaS launch and NHS Digital expansion</div></div>
+        <div class="stat-card"><div class="stat-num">£1.04M</div><div class="stat-lbl">Year 3 Revenue  Breaking £1M ARR milestone with 308 active institutional clients</div></div>
+        <div class="stat-card"><div class="stat-num">£3.1M</div><div class="stat-lbl">Year 5 Revenue  Global expansion with 683 active users and 98.52% gross margin efficiency</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-market -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PRICING
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-pricing">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Pricing & Plans</div>
+      <h2 class="section-h2 dark">Machine-Speed Protection.<br><span style="color:var(--accent-dim);">At a Fraction of Manual Audit Costs.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">AutonomyGovernanceHub provides continuous AI agent governance at 15% of the cost of manual safety audits and external consulting. Choose the plan that matches your organisation's autonomous agent deployment scale  from pilot projects to full enterprise governance.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="price-tier">Basic</div>
+          <div class="price-amount">£199<span>/mo</span></div>
+          <div class="price-sub">Small Institution · Up to 5 Agents</div>
+          <hr class="price-divider">
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Real-time monitoring for up to 5 autonomous agents</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Trust Analytics Dashboard with live agent visibility</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Compliance logging for EU AI Act &amp; DORA</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Replayable Trust Ledger (90-day retention)</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>LangChain &amp; AutoGen SDK integration</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Email support + onboarding guide</div>
+          <div style="margin-top:24px;"><button class="btn-secondary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started →</button></div>
+        </div>
+
+        <div class="price-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="price-tier">Professional</div>
+          <div class="price-amount">£499<span>/mo</span></div>
+          <div class="price-sub">Medium Institution · Unlimited Agents</div>
+          <hr class="price-divider">
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Full runtime enforcement via Autonomy Envelope</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>API &amp; SDK access for cross-framework integration</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>GAN-driven adversarial scenario library access</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Risk-Adaptive HITL escalation workflows</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Cloud analytics &amp; CSO reporting dashboards</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Priority enterprise support (24hr response)</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>One sector compliance module included</div>
+          <div style="margin-top:24px;"><button class="btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Request Demo →</button></div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">£1,000<span>/mo</span></div>
+          <div class="price-sub">Large Org · Custom · White-Label</div>
+          <hr class="price-divider">
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Unlimited agent governance across all environments</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Full white-label deployment for institutional clients</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Advanced adversarial testing &amp; red-team sessions</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Edge Governance containers for air-gapped environments</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>All sector compliance modules (Finance, Healthcare, Gov)</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>24/7 dedicated technical support &amp; SLA</div>
+          <div class="price-feature"><i class="fas fa-check-circle"></i>Custom DORA &amp; EU AI Act reporting automation</div>
+          <div style="margin-top:24px;"><button class="btn-secondary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Talk to Sales →</button></div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:56px;">
+        <div class="label-tag">Sector Add-Ons</div>
+        <h3 class="section-h2 dark" style="font-size:clamp(22px,2.5vw,34px);">Industry-Specific Governance Modules.</h3>
+        <div class="section-divider divider-blue"></div>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-university"></i></div>
+            <h3>Finance / DORA Module  £499/yr</h3>
+            <p>Pre-configured guardrails for FCA and DORA compliance. Prevents unauthorized market transactions, enforces liquidity reporting rules, and governs autonomous trading agents against financial regulation mandates.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-hospital"></i></div>
+            <h3>Healthcare / HIPAA Module  £399/yr</h3>
+            <p>Secure clinical agent integration with patient data protection guardrails. Reduces risk of "Medical Hallucinations" by blocking agent actions that deviate from established clinical protocols. NHS DTAC aligned.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-landmark"></i></div>
+            <h3>Public Service Module  £299/yr</h3>
+            <p>Tailored for government-front-desk and public administration agents. Includes Sovereign AI integrity controls, parliamentary accountability audit trails, and edge-native deployment for air-gapped environments.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;background:linear-gradient(135deg,rgba(0,194,203,0.06),rgba(108,63,197,0.06));border:1px solid rgba(0,194,203,0.15);border-radius:20px;padding:clamp(24px,3vw,40px);">
+        <div class="label-tag">API & SDK Licensing</div>
+        <h3 style="font-family:var(--display);font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--text-dark);margin-bottom:12px;">Pay-As-You-Govern API Pricing</h3>
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:20px;line-height:1.7;">For organizations integrating AutonomyGovernanceHub directly into their agentic frameworks or developer pipelines, interaction-based API licensing provides flexible, scalable governance at predictable costs.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:12px;padding:18px;"><div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--accent-dim);">£0.10–£0.25</div><div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-family:var(--mono);">per agent interaction (volume-tiered)</div></div>
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:12px;padding:18px;"><div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--accent-dim);">£2,500–£5,000</div><div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-family:var(--mono);">annual SDK developer license for ISVs</div></div>
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:12px;padding:18px;"><div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--accent-dim);">£3,600</div><div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-family:var(--mono);">Edge Governance Deployment Kit (inc VAT)</div></div>
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:12px;padding:18px;"><div style="font-family:var(--mono);font-size:22px;font-weight:800;color:var(--accent-dim);">£2,000–£5,000</div><div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-family:var(--mono);">annual research data license for universities</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-pricing -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : ABOUT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">About Us</div>
+      <h2 class="section-h2 dark">Built by Enterprise Infrastructure<br><span style="color:var(--accent-dim);">Experts. For the Autonomous Agent Era.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">AutonomyGovernanceHub was founded on a simple but urgent observation: as enterprises deploy thousands of autonomous AI agents, traditional IT governance frameworks are completely incapable of managing systems that plan, reason, and execute multi-step actions independently. We built the solution.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Founder</div>
+      <h2 class="section-h2 dark">The Founder Behind AutonomyGovernanceHub.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="founders-grid" style="grid-template-columns:1fr;">
+        <div class="founder-card founder-card-single" style="display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:flex-start;">
+          <div>
+           
+          </div>
+          <div>
+            <div class="founder-name">Akhila Medisetti</div>
+            <div class="founder-title">Founder & CEO · AutonomyGovernanceHub</div>
+            <p class="founder-bio">Akhila is a highly accomplished IT leader with over 2.5 years of experience as a Senior Project Engineer at Wipro and a Master's degree in Computer Science from Coventry University (UK). Her deep domain expertise in Citrix VDI administration, Azure IAAS, and ITIL infrastructure management provides the technical and operational backbone for AutonomyGovernanceHub.</p>
+            <p class="founder-bio" style="margin-top:12px;">Having managed high-availability infrastructure for leading global Swiss banks across APAC, EMEA, and AMER regions, Akhila brings first-hand experience in the critical security and stability requirements of Tier-1 enterprises. Recognising the "Governance Gap" during her tenure, she identified that traditional IT governance was fundamentally incapable of managing non-deterministic AI agents  and built the solution.</p>
+            <p class="founder-bio" style="margin-top:12px;">Her vision: to transform AI safety from a reactive audit process into a real-time operational standard that enables organisations to scale autonomous productivity with absolute trust.</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="background:var(--bg-light);padding:clamp(60px,7vw,112px) 0;">
+    <div class="container">
+      <div class="label-tag">Our Values</div>
+      <h2 class="section-h2 dark">The Principles That Guide<br>Every Governance Decision.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="values-grid">
+        <div class="val-card"><div class="val-icon"><i class="fas fa-shield-alt"></i></div><div class="val-title">Trust by Design</div><div class="val-desc">Every platform feature is built with trust as a foundational requirement, not an afterthought. Governance is embedded at runtime, not bolted on as a compliance checkbox.</div></div>
+        <div class="val-card"><div class="val-icon"><i class="fas fa-eye"></i></div><div class="val-title">Radical Transparency</div><div class="val-desc">Every autonomous decision is explainable. Every agent action is auditable. We make AI reasoning visible, traceable, and legally defensible  meeting the EU AI Act's highest explainability standards.</div></div>
+        <div class="val-card"><div class="val-icon"><i class="fas fa-bolt"></i></div><div class="val-title">Machine-Speed Accountability</div><div class="val-desc">Governance should never be a bottleneck. Our sub-50ms runtime interception ensures safety and compliance operate at the same speed as autonomous execution  without human delays.</div></div>
+        <div class="val-card"><div class="val-icon"><i class="fas fa-lock"></i></div><div class="val-title">Data Sovereignty First</div><div class="val-desc">Sensitive enterprise reasoning data never leaves the corporate perimeter. Edge-native governance ensures absolute data sovereignty for banking, healthcare, and national security environments.</div></div>
+        <div class="val-card"><div class="val-icon"><i class="fas fa-chart-line"></i></div><div class="val-title">Proactive Over Reactive</div><div class="val-desc">We don't wait for agents to fail. GAN-driven adversarial simulation continuously hardens our guardrails against threats that haven't yet emerged in production  staying ahead of the threat curve.</div></div>
+        <div class="val-card"><div class="val-icon"><i class="fas fa-globe"></i></div><div class="val-title">UK-Led Global Innovation</div><div class="val-desc">Built in alignment with the UK AI Safety Institute and NCSC guidelines, AutonomyGovernanceHub is designed to become the global standard for autonomous agent governance  starting from the UK.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY UK -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Strategic Location</div>
+      <h2 class="section-h2 white">Why the UK is the Perfect Launchpad<br>for AI Governance Innovation.</h2>
+      <div class="section-divider divider-white"></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num" style="font-size:clamp(18px,2vw,24px);font-weight:700;">AI Safety Institute</div><div class="stat-lbl">UK government-backed initiative making the UK the global hub for AI safety research and governance standards</div></div>
+        <div class="stat-card"><div class="stat-num" style="font-size:clamp(18px,2vw,24px);font-weight:700;">DORA Urgency</div><div class="stat-lbl">City of London's financial institutions face critical DORA compliance deadlines  creating immediate demand for our platform</div></div>
+        <div class="stat-card"><div class="stat-num" style="font-size:clamp(18px,2vw,24px);font-weight:700;">Alan Turing Institute</div><div class="stat-lbl">World-class AI research ecosystem including Imperial College London and Coventry University for R&D collaboration</div></div>
+        <div class="stat-card"><div class="stat-num" style="font-size:clamp(18px,2vw,24px);font-weight:700;">Sovereign AI</div><div class="stat-lbl">UK government's emphasis on "Sovereign AI" perfectly aligns with our mission to protect critical national infrastructure</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-about -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : FAQ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-faq">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">FAQ</div>
+      <h2 class="section-h2 dark">Frequently Asked Questions<br><span style="color:var(--accent-dim);">About AI Agent Governance.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">Everything you need to know about deploying AutonomyGovernanceHub in your enterprise environment  from technical integration to regulatory compliance.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container" style="max-width:860px;">
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>What is the "Governance Gap" that AutonomyGovernanceHub addresses?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">The "Governance Gap" refers to the critical space between deploying autonomous AI agents and having adequate real-time controls over their behaviour. Traditional IT governance tools (firewalls, RBAC, post-hoc logging) were designed for deterministic software  they cannot manage AI systems that plan, reason, and execute multi-step actions independently. AutonomyGovernanceHub fills this gap with a Runtime Trust Orchestration Layer that governs agents at the moment of execution, not after the fact.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>How does AutonomyGovernanceHub achieve sub-50ms interception latency?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">Our latency performance is achieved through three key innovations: (1) Lightweight gRPC interceptors deployed directly within VDI hosts and cloud containers, requiring no network round-trips to central servers; (2) Model distillation techniques that compress our Transformer reasoning models by 30% without accuracy loss; (3) Edge-native inference that runs policy evaluation locally. Stress-testing across high-frequency automation workflows has confirmed under 45ms average overhead  well within our 50ms SLA.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>Which agentic frameworks does AutonomyGovernanceHub integrate with?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">AutonomyGovernanceHub integrates seamlessly with all major agentic frameworks through modular API and SDK packages: LangChain, AutoGen, Microsoft Semantic Kernel, AutoGPT, and CrewAI. Integration-ready APIs are prepared for deployment. For custom enterprise frameworks, our gRPC and WebSocket integration layer supports any agent runtime that exposes API calls or system commands. The SDK is available in Python, Node.js, and Java.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>How does AutonomyGovernanceHub comply with the EU AI Act and DORA?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">The platform is specifically engineered for "High-Risk AI Systems" as defined by the EU AI Act, covering: Automated Risk Management logs for every agent interaction; High-fidelity "Explainability Reports" for non-deterministic agent decisions; Human-in-the-Loop (HITL) audit trails for high-stakes enterprise actions. For DORA compliance, we provide incident reporting automation, digital operational resilience testing, and third-party risk management documentation. The Trust Ledger enables clients to generate instant regulatory filings without manual compliance overhead.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>Can AutonomyGovernanceHub deploy in air-gapped or classified environments?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">Yes  this is one of our core differentiators. The Edge Governance Module is specifically designed for deployment in air-gapped, restricted-network, and classified environments. Full intent-to-policy inference runs locally without any cloud dependency. Encrypted policy updates from the centralized cloud engine can be delivered via one-way secure transfer, maintaining governance currency without exposing internal reasoning data. Ideal for NHS Digital, Home Office, HMRC, and defence contractor environments.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>What is "Agentic Drift" and how does the platform detect it?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">Agentic Drift is a phenomenon where autonomous AI agents gradually deviate from their intended objectives due to model updates, context poisoning, or evolving data distributions. Unlike traditional software bugs, drift is stochastic  the same input can produce different, unpredictable outputs. AutonomyGovernanceHub detects drift through: (1) Continuous comparison of live agent behaviour against baseline safety profiles; (2) GAN-generated adversarial simulations that model drift patterns before they emerge in production; (3) Chain-of-Thought reasoning analysis that flags when an agent's internal logic begins bypassing its policy constraints.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>How long does it take to deploy AutonomyGovernanceHub in a live environment?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">For cloud-native environments using LangChain or AutoGen, SDK integration can be completed in under 4 hours using our comprehensive integration guides. For VDI and private cloud deployments (Citrix, Azure), our Solutions Architects typically complete integration within 2-5 business days including testing. Edge Governance container deployment in restricted environments requires 1-2 weeks including security validation. All deployments include a dedicated Pilot-to-Contract conversion framework with full risk-analytics dashboards for CSOs and IT Directors.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFAQ(this)"><span>What is the current Technology Readiness Level (TRL) of the platform?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+        <div class="faq-answer">AutonomyGovernanceHub has achieved TRL-7 (System Prototype Demonstration in Operational Environment), substantiated by internal development milestones and ongoing pilot evaluations. This includes: Cloud Infrastructure Stress Testing in managed VDI environments; Regulatory Compliance Validation for EU AI Act and GDPR mandates; Latency & Interaction Testing confirming sub-50ms performance in high-frequency workflows. The platform is nearing TRL-8, with multi-tenant SaaS architecture tested for enterprise-wide rollout and integration-ready APIs prepared for leading agent frameworks.</div>
+      </div>
+
+    </div>
+  </section>
+</div><!-- /page-faq -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : CONTACT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section style="background:linear-gradient(140deg,#EDF0FA 0%,#D8E2F8 60%,#C8D5F5 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Contact & Demo</div>
+      <h2 class="section-h2 dark">Start Your AI Governance<br><span style="color:var(--accent-dim);">Pilot Programme Today.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">Ready to close the Governance Gap in your enterprise AI deployments? Request a personalised demo of AutonomyGovernanceHub and see the Autonomy Envelope in action  governing live agent interactions with sub-50ms latency and full DORA/EU AI Act compliance.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT INFO -->
+        <div>
+          <div class="label-tag">Get in Touch</div>
+          <h3 style="font-family:var(--display);font-size:clamp(22px,2.5vw,32px);font-weight:700;color:var(--text-dark);margin-bottom:14px;">Why Request a Demo?</h3>
+          <p style="color:var(--text-muted);font-size:14px;line-height:1.75;margin-bottom:24px;">
+            During your personalised demo, you'll see the Autonomy Envelope intercept live agent logic in real time, explore the Replayable Trust Ledger, and understand how AutonomyGovernanceHub immediately reduces your EU AI Act and DORA compliance exposure.
+          </p>
+          <div class="contact-info-cards">
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fas fa-envelope"></i></div>
+              <div class="info-card-text"><strong>Email Us</strong><span>autonomygovernancehub@outlook.com</span></div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="info-card-text"><strong>UK Headquarters</strong><span>London, United Kingdom</span></div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fas fa-shield-alt"></i></div>
+              <div class="info-card-text"><strong>Security & Compliance</strong><span>UK GDPR · DORA · EU AI Act · ISO 42001</span></div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon"><i class="fas fa-clock"></i></div>
+              <div class="info-card-text"><strong>Response Time</strong><span>Within 24 hours for all demo requests</span></div>
+            </div>
+          </div>
+
+          <!-- Performance snapshot -->
+          <div style="margin-top:28px;">
+            <div class="score-card">
+              <div class="score-card-top">
+                <div>
+                  <div class="score-card-label">AutonomyGovernanceHub · Pilot Performance</div>
+                  <h3 class="dashboard-title">What Pilots Achieve</h3>
+                </div>
+              </div>
+              <div class="score-row">
+                <div class="score-icon blue-bg">DA</div>
+                <span class="score-lbl">Agent Drift Detection Accuracy</span>
+                <span class="score-val">94% in production</span>
+              </div>
+              <div class="score-row">
+                <div class="score-icon green-bg">IL</div>
+                <span class="score-lbl">Average Intercept Latency</span>
+                <span class="score-val">&lt;45ms overhead</span>
+              </div>
+              <div class="score-row">
+                <div class="score-icon light-bg">OH</div>
+                <span class="score-lbl">Human Oversight Time Reduction</span>
+                <span class="score-val">95% for routine tasks</span>
+              </div>
+              <div class="score-row" style="border:none;">
+                <div class="score-icon blue-bg">CP</div>
+                <span class="score-lbl">Compliance Automation Coverage</span>
+                <span class="score-val">100% DORA/AI Act</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="contact-form-wrap">
+          <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:6px;">Request a Demo</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;font-family:var(--mono);">Start with an 8-week Governance Pilot  no commitment required</p>
+
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="c642489b-7e29-4650-a00a-842e4e1b0e81">
+            <input type="hidden" name="subject" value="New AutonomyGovernanceHub Demo Request">
+            <input type="hidden" name="from_name" value="AutonomyGovernanceHub Website">
+
+            <div class="form-row">
+              <label>Full Name</label>
+              <input type="text" name="name" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-row">
+              <label>Work Email</label>
+              <input type="email" name="email" placeholder="you@yourorganisation.co.uk" required>
+            </div>
+
+            <div class="form-row">
+              <label>Organisation Name</label>
+              <input type="text" name="organisation" placeholder="Your bank, NHS Trust, or enterprise name">
+            </div>
+
+            <div class="form-row">
+              <label>Role</label>
+              <select name="role">
+                <option>Chief Security Officer (CSO)</option>
+                <option>IT Infrastructure Director</option>
+                <option>Data Privacy Officer (DPO)</option>
+                <option>Chief Risk Officer (CRO)</option>
+                <option>AI / ML Engineering Lead</option>
+                <option>Compliance Manager</option>
+                <option>CEO / Founder</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Primary Sector</label>
+              <select name="sector">
+                <option>Banking & Financial Services</option>
+                <option>Healthcare / NHS</option>
+                <option>Government & Defence</option>
+                <option>Enterprise IT / Managed Services</option>
+                <option>Insurance</option>
+                <option>Retail & E-commerce</option>
+                <option>Technology / AI Development</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Current AI Agent Framework</label>
+              <select name="framework">
+                <option>LangChain</option>
+                <option>Microsoft AutoGen / Semantic Kernel</option>
+                <option>AutoGPT</option>
+                <option>CrewAI</option>
+                <option>Custom / Proprietary Framework</option>
+                <option>Not yet deployed</option>
+                <option>Multiple Frameworks</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Your Biggest AI Governance Challenge</label>
+              <textarea name="message" placeholder="Describe your current governance challenges  agent drift, compliance pressure, data sovereignty concerns, DORA deadlines..." required></textarea>
+            </div>
+
+            <button class="form-submit-btn" type="submit">Submit Demo Request →</button>
+            <p style="text-align:center;font-size:11px;color:var(--text-light);margin-top:14px;font-family:var(--mono);">UK GDPR Compliant · Your data is never sold or shared</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div><!-- /page-contact -->
+
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand" style="grid-column:1;">
+     <div class="footer-logo" onclick="showPage('home')">
+  AutonomyGovernanceHub
+</div>
+      <p class="footer-desc">
+        AI-Native Runtime Trust & Orchestration Platform for Autonomous Enterprise Agents. Built for UK Banking, NHS, Government, and Managed Service Providers demanding real-time AI safety, compliance, and data sovereignty.
+      </p>
+      <div class="footer-badges">
+        <span class="footer-badge">UK GDPR Compliant</span>
+        <span class="footer-badge">EU AI Act Ready</span>
+        <span class="footer-badge">DORA Aligned</span>
+        <span class="footer-badge">ISO 42001</span>
+        <span class="footer-badge">NHS DTAC</span>
+        <span class="footer-badge">Cyber Essentials</span>
+      </div>
+    </div>
+
+    <!-- PLATFORM -->
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <div class="footer-col">
+        <a onclick="showPage('platform')">Runtime Trust Interception</a>
+        <a onclick="showPage('platform')">GAN Threat Simulation</a>
+        <a onclick="showPage('platform')">Replayable Trust Ledger</a>
+        <a onclick="showPage('platform')">Edge Sovereignty Module</a>
+        <a onclick="showPage('platform')">Risk-Adaptive HITL</a>
+        <a onclick="showPage('platform')">Zero-Trust Identity</a>
+      </div>
+    </div>
+
+    <!-- COMPANY -->
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-col">
+        <a onclick="showPage('about')">About AutonomyGovernanceHub</a>
+        <a onclick="showPage('about')">Akhila Medisetti · Founder & CEO</a>
+        <a onclick="showPage('process')">How It Works</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        <a onclick="showPage('market')">Market Analysis</a>
+        <a onclick="showPage('pricing')">Pricing & Plans</a>
+        <a onclick="showPage('contact')">Request a Demo</a>
+      </div>
+    </div>
+
+    <!-- SOLUTIONS -->
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <div class="footer-col">
+        <a onclick="showPage('platform')">Banking & Financial Services</a>
+        <a onclick="showPage('platform')">Healthcare & NHS Digital</a>
+        <a onclick="showPage('platform')">Government & Defence</a>
+        <a onclick="showPage('platform')">Enterprise IT & MSPs</a>
+        <a onclick="showPage('pricing')">Basic · £199/mo</a>
+        <a onclick="showPage('pricing')">Professional · £499/mo</a>
+        <a onclick="showPage('pricing')">Enterprise · £1,000/mo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom-bar">
+    <p>© 2026 <span>AutonomyGovernanceHub</span> · London, UK · Founder: Akhila Medisetti · UK GDPR Compliant · Govern Today. Empower Tomorrow.</p>
+    <div class="footer-bottom-links">
+      <a onclick="showPage('contact')">Privacy Policy</a>
+      <a onclick="showPage('contact')">Terms of Service</a>
+      <a onclick="showPage('contact')">Confidential Business Plan</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ─── PAGE NAV ───────────────────────────────── */
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg){pg.classList.add('active');}
+  const btn=document.getElementById('nav-'+name);
+  if(btn){btn.classList.add('active');}
+  window.scrollTo({top:0,behavior:'instant'});
+  if(name==='market'&&!window.marketChartsLoaded){initMarketCharts();window.marketChartsLoaded=true;}
+}
+
+function toggleCard(btn){
+  const card=btn.closest('.platform-card');
+  card.classList.toggle('open');
+  btn.innerHTML=card.classList.contains('open')?'Show Less ▲':'Learn More ▼';
+}
+
+function toggleFAQ(btn){
+  const item=btn.parentElement;
+  const icon=btn.querySelector('.faq-icon i');
+  item.classList.toggle('open');
+  icon.className=item.classList.contains('open')?'fas fa-minus':'fas fa-plus';
+}
+
+function closeMobile(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+
+/* ─── CHART THEME ────────────────────────────── */
+const CYAN='rgba(0,194,203,1)';
+const CYAN2='rgba(0,194,203,0.7)';
+const CYAN3='rgba(0,194,203,0.3)';
+const VIO='rgba(108,63,197,0.9)';
+const VIO2='rgba(108,63,197,0.5)';
+const GRID='rgba(0,194,203,0.08)';
+const MUTED='rgba(74,106,154,0.85)';
+
+Chart.defaults.font.family="'IBM Plex Mono', monospace";
+Chart.defaults.font.size=window.innerWidth<600?9:11;
+Chart.defaults.color=MUTED;
+
+/* ─── MARKET CHARTS ──────────────────────────── */
+function initMarketCharts(){
+  // AI TRiSM Market Growth
+  new Chart(document.getElementById('chartGrowth').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['2022','2023','2024','2025','2026','2028','2030'],
+      datasets:[
+        {label:'Global AI TRiSM Market ($B)',data:[10.2,18.5,24.3,30.1,37.8,46.2,56.7],backgroundColor:CYAN2,borderRadius:5,barPercentage:0.55},
+        {type:'line',label:'AgentOps Sub-Segment CAGR %',data:[null,15,18,21,25,27,30],borderColor:VIO,borderWidth:2,yAxisID:'y2',tension:0.4,pointBackgroundColor:VIO,fill:false}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:12,font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>'$'+v+'B'}},y2:{position:'right',grid:{display:false},ticks:{color:MUTED,callback:v=>v+'%'}}}}
+  });
+
+  // Pain Points Doughnut
+  new Chart(document.getElementById('chartPain').getContext('2d'),{
+    type:'doughnut',
+    data:{
+      labels:['Shadow AI & Unsanctioned Agents (99%)','Over-Privileged Agent Access (90%)','Agentic Drift Incidents (80%)','Compliance Audit Failures (65%)','Data Exfiltration Events (55%)'],
+      datasets:[{
+        data:[99,90,80,65,55],
+        backgroundColor:[CYAN,CYAN2,CYAN3,VIO,VIO2],
+        borderWidth:1.5
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:10,font:{size:10}}}}}
+  });
+
+  // Readiness Bar
+  new Chart(document.getElementById('chartReadiness').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['No AI Governance','Post-Hoc Logs Only','Partial Runtime Control','Full Runtime Trust'],
+      datasets:[{
+        label:'UK Enterprise Distribution (%)',
+        data:[35,42,18,5],
+        backgroundColor:[CYAN3,CYAN2,CYAN,VIO],
+        borderRadius:6,barPercentage:0.6
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>v+'%'}}}}
+  });
+
+  // Competitive Radar
+  new Chart(document.getElementById('chartRadar').getContext('2d'),{
+    type:'radar',
+    data:{
+      labels:['Runtime Interception','Chain-of-Thought Audit','UK Regulatory Alignment','GAN Defense','Edge Sovereignty','HITL Orchestration'],
+      datasets:[
+        {label:'AutonomyGovernanceHub',data:[5,5,5,5,5,5],backgroundColor:'rgba(0,194,203,0.1)',borderColor:CYAN,borderWidth:2,pointBackgroundColor:CYAN},
+        {label:'Palo Alto Prisma AI',data:[2,1,2,1,1,2],backgroundColor:'rgba(108,63,197,0.05)',borderColor:VIO,borderWidth:1.5,pointBackgroundColor:VIO},
+        {label:'LangSmith',data:[1,3,1,1,1,1],backgroundColor:'rgba(0,194,203,0.04)',borderColor:CYAN3,borderWidth:1.5,pointBackgroundColor:CYAN3},
+        {label:'Arize AI',data:[1,2,1,1,1,1],backgroundColor:'rgba(108,63,197,0.03)',borderColor:VIO2,borderWidth:1.5,pointBackgroundColor:VIO2},
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:14,font:{size:10}}}},scales:{r:{backgroundColor:'rgba(0,194,203,0.01)',grid:{color:GRID},pointLabels:{color:MUTED,font:{size:10}},ticks:{display:false},min:0,max:5}}}
+  });
+}
+</script>
+</body>
+</html>
